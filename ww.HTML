@@ -1,0 +1,52 @@
+<HTML>
+	<HEAD>
+		<link rel="stylesheet" href="style.css">
+		<TITLE>Учебный файл HTML</TITLE>
+	</HEAD>
+	<BODY>
+		<div class="all-space1">
+		<h1 class = "title-name">Введите уравнение</h1>
+		<a href="index.HTML" class="my-link">На главную</a><br/>
+			<div class="equation">
+		 <input id='aaa' placeholder='a' class='kk'></input>x² +
+		 <input id='e' placeholder= 'b' class='kk'></input>x +
+		 <input id='r' placeholder= 'c' class='kk'></input> = 0
+			</div>
+
+		 <p></p>
+		 <input id = 'param' class="moo" placeholder="Введите значение параметра"></input><br/>
+
+		 <button onclick="functionname()" class="result-button">Жмаем для решения</button>
+		 <div id="result" class="mao"></div>
+		</div>
+
+	</BODY>
+
+	<script>
+	const roundBy = 5
+		function functionname(){
+			const a = eval(document.getElementById('aaa').value.replace('a', document.getElementById('param').value));
+			const b = eval(document.getElementById('e').value.replace('a', document.getElementById('param').value));
+			const c = eval(document.getElementById('r').value.replace('a', document.getElementById('param').value));
+			var d = b**2 - 4*a*c
+			var	x1,x2
+		
+			if (d<0){
+				document.getElementById('result').innerHTML = "Решений нет!";
+			}
+			else if (d==0){
+			 x1 = x2 = Math.round((-b)/(a*2)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+
+			 document.getElementById('result').innerHTML = "Есть один корень:" +x1;
+			}
+			else {
+				x1 = Math.round((-b-Math.sqrt(d))/(a*2)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+				x2 = Math.round((-b+Math.sqrt(d))/(a*2)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+
+				document.getElementById('result').innerHTML = "Есть два корня: " + x1 + ";" +x2
+			}
+
+		}
+
+	</script>
+</HTML>

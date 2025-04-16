@@ -1,0 +1,59 @@
+<HTML>
+	<HEAD>
+		<link rel="stylesheet" href="style.css">
+		<TITLE>Учебный файл HTML</TITLE>
+	</HEAD>
+	<BODY>
+		<div class="all-space1">
+		 <h1 class="title-name">Введите уравнение</h1>
+		 <a href="index.HTML" class="my-link">На главную</a></p>
+		<div class="equation">
+		 <b>| </b><input id='aaa' placeholder='k' class='kk'></input>x +
+		 <input id='r' placeholder= 'b' class='kk'></input><b> |</b> =
+		 <input id='juj' placeholder= 'g(a)' class='kk'></input>
+		</div>
+
+
+		 <p></p>
+		 <div class = "my-items">
+		 <input id = 'param' class="moo" placeholder="Введите значение параметра"></input><br/>
+
+		 <button onclick="functionname()" class="result-button">Жмаем для решения</button>
+		 <div id="result" class="mao"></div>
+		 </div>
+		</div>
+
+	</BODY>
+
+	<script>
+	const roundBy = 5
+		function functionname(){
+			const k = eval(document.getElementById('aaa').value.replace('a', document.getElementById('param').value));
+			const b = eval(document.getElementById('r').value.replace('a', document.getElementById('param').value));
+			const gota = eval(document.getElementById('juj').value.replace('a', document.getElementById('param').value));
+			if( gota < 0 ){
+					document.getElementById('result').innerHTML = "Решений нет"
+			}
+
+			else if (gota == 0){
+
+				var	x1 = Math.round(((gota-b)/k)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+				document.getElementById('result').innerHTML = "Ответ: " + x1
+			}
+
+
+			else {
+
+			var	x1 = Math.round(((gota-b)/k)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+			var	x2 = Math.round(((-gota-b)/k)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+			document.getElementById('result').innerHTML = "Ответ: " + x1 + ";" + x2
+		}
+
+
+			}
+
+
+
+
+	</script>
+</HTML>

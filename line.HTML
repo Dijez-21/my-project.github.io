@@ -1,0 +1,40 @@
+<HTML>
+	<HEAD>
+		<link rel="stylesheet" href="style.css">
+		<TITLE>Учебный файл HTML</TITLE>
+	</HEAD>
+	<BODY>
+		
+		<div class="all-space1">
+		 <h1 class = "title-name">Введите уравнение</h1>
+		 <a href="index.HTML" class="my-link1">На главную</a></p>
+		<div class="equation">
+		 <input id='aaa' placeholder='k' class='kk'></input>x +
+		 <input id='r' placeholder= 'b' class='kk'></input> = 0
+		</div>
+
+		 <p></p>
+		 <div class = "my-items">
+		 <input id = 'param' class="moo" placeholder="Введите значение параметра"></input><br/>
+
+		 <button onclick="functionname()" class="result-button">Жмаем для решения</button>
+		 <div id="result" class="mao"></div>
+		</div>
+		
+
+	</BODY>
+
+	<script>
+	const roundBy = 5
+		function functionname(){
+			const k = eval(document.getElementById('aaa').value.replace('a', document.getElementById('param').value));
+			const b = eval(document.getElementById('r').value.replace('a', document.getElementById('param').value));
+			var	x1 = Math.round((-b/k)*Math.pow(10,roundBy))/Math.pow(10,roundBy)
+			document.getElementById('result').innerHTML = "Ответ: " + x1
+			}
+
+
+
+
+	</script>
+</HTML>

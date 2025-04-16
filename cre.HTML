@@ -1,0 +1,120 @@
+<HTML>
+	<HEAD>
+		<link rel="stylesheet" href="style.css">
+		<TITLE>Учебный файл HTML</TITLE>
+
+	</HEAD>
+	<BODY>
+		<div class="all-space1">
+		 <h1 class="title-name">Введите данные</h1>
+		 <a href="index.HTML" class="my-link">На главную</a></p>
+
+		 <lable class="equation">Сумма долга: </lable><input id='S' placeholder='S' class='kk1'></input>
+		 <p></p>
+		 <form>
+			 <label class="equation1">Единица измерения времени:</label>
+			 <select onchange="changerg()" id="x">
+				 <option value="dif" class='kk2'>Дифференцированный платеж</option>
+				 <option value="fix" class='kk2'>Фиксированный платеж</option>
+			 </select>
+		 </form>
+		  <lable class="equation">Процент: </lable><input id='proc' placeholder='%' class='kk'></input>
+			<p></p>
+		 <div id = "place_for_your_code"><label> Ведите на сколько процентов сумма выплат превышает кредит:</label><input id='prsm' placeholder='%'></input></div>
+
+		 <form>
+			 <label class="equation1">Единица измерения времени:</label>
+			 <select onchange="changer()" id="u">
+				 <option value="y" class='kk2'>Год</option>
+				 <option value="m" class='kk2'>Месяц</option>
+			 </select>
+		 </form>
+		  <lable class="equation">Сумма выплат: </lable><input id='huh' placeholder='sp' class='kk1'></input>
+			<p></p>
+		 <label id="111" class="equation">Количество лет: </label><input id='r' placeholder= 'Y' class='kk'></input><br/>
+
+		 <button onclick="functionname()" class="result-button">Жмаем для решения</button>
+		 <div id="result" class="mao"></div>
+	</BODY>
+
+	<script>
+
+	const roundBy = 5;
+	function changer(){
+			const year_count = document.getElementById('111');
+			const ch = document.getElementById('u').value;
+			if (ch == 'm'){
+				year_count.innerText = "Количество месяцев: ";
+			}
+			else {
+				year_count.innerText = "Количество лет: ";
+			}
+		}
+
+	function changerg(){
+		const year_count = document.getElementById('place_for_your_code');
+		const o = document.getElementById('x').value;
+		if (o == 'dif'){
+			year_count.innerHTML = "<label> Ведите на сколько процентов сумма выплат превышает кредит:</label><input id='prsm' placeholder='%'></input>";
+		}
+		else {
+			year_count.innerHTML = "<label> Ведите размер платежа:</label><input id='ed_vip' placeholder='K'></input>";
+	}
+}
+
+	function functionname(){
+		const summ =parseInt(document.getElementById('S').value.replaceAll(" ", ""));
+		const time_count=parseInt(document.getElementById('r').value.replaceAll(" ", ""));
+		const procent =parseInt(document.getElementById('proc').value.replaceAll(" ", ""));
+		const o = document.getElementById('x').value
+		const summ_plat =parseInt(document.getElementById('huh').value.replaceAll(" ", ""));
+		var ost = summ
+		var i = 0
+
+
+	 if (o == "dif"){ //Решение диффиренцированных платежей
+		 const z = parseInt(document.getElementById('prsm').value.replaceAll(" ", ""));
+		 if (z!="" && time_count!="" && (summ.toString()=="NaN" || summ=="") && (procent.toString()=="NaN" || procent=="") ) {
+			 var jo = 0
+
+
+			 for (var t = 0; t<=time_count; t++){
+				 jo += t/time_count
+			 }
+			var po = (z)/(jo)
+			document.getElementById('proc').value = po
+		 }
+		 else if ( summ!="" && procent!="" && time_count!="" && (summ_plat.toString()=="NaN") || (summ_plat=="")){
+			 document.getElementById('huh').value = summ*(0.01*procent*((1+1/time_count)/2*time_count)+1)
+			 document.getElementById('prsm').value = (0.01*procent*((1+1/time_count)/2*time_count))*100
+		 }
+	 }
+
+
+
+	 else  { //Решение равных платежей
+		 const plat=parseInt(document.getElementById('ed_vip').value.replaceAll(" ", ""));
+		 if (((time_count.toString()=="NaN") || (time_count=="")) && summ!="" && procent!="" && plat!=""){		//Неизвестно время погашения
+				while (ost>=0) {
+					ost = (ost*(1 + procent/100))-plat
+					
+					i+=1
+				}
+				document.getElementById('r').value = i;
+			}
+			else if (summ.toString()=="NaN" && procent!="" && time_count!="" && plat!=""){		//Неизвестна сумма кредита
+				var sm = (plat*(((1+procent/100)**time_count-1)/(procent/100)))/((1+procent/100)**time_count)
+				sm = Math.round(sm*100)/100
+				document.getElementById('S').value = sm;
+				}
+				else if (plat.toString()=="NaN" && procent!="" && time_count!="" && summ!=""){		//Неизвестен сумма платежа
+					var plat1 = (1+procent/100)**time_count*summ/(((1+procent/100)**time_count-1)/(procent/100))
+					plat1 = Math.round(plat1*100)/100
+					document.getElementById('ed_vip').value = plat1;
+					document.getElementById('huh').value = summ + plat1*time_count
+				}
+	 }
+
+		}
+	</script>
+</HTML>
